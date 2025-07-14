@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: ai-platform-server
+    env: node
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CLIENT_URL
+        value: https://ai-platform-client.onrender.com
+
+  - type: web
+    name: ai-platform-client
+    env: static
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://ai-platform-server.onrender.com
