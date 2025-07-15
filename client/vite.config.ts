@@ -11,6 +11,10 @@ export default defineConfig({
     host: '0.0.0.0',
     port: parseInt(process.env.PORT || '3000'),
   },
+  preview: {
+    port: 10000,
+    allowedHosts: ['dsaasplatform-1.onrender.com'], // ✅ this allows Render to load your app
+  },
   build: {
     outDir: 'dist',
   },
