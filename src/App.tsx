@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import LoginPage from './components/LoginPage';
+import LoginPage from "../client/components/LoginPage";
 import Navigation from './components/Navigation';
 import ChatbotPage from './components/ChatbotPage';
 import ModelsPage from './components/ModelsPage';
