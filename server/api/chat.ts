@@ -14,25 +14,37 @@ export const chatHandler = async (req: express.Request, res: express.Response) =
     return res.status(500).json({ error: 'Missing GROQ_API_KEY in environment' });
   }
 
+  if (!messages || !Array.isArray(messages)) {
+    return res.status(400).json({ error: 'Invalid messages format' });
+  }
+
   try {
     const response = await axios.post(
       'https://api.groq.com/openai/v1/chat/completions',
       {
         model: 'mixtral-8x7b-32768',
-        messages: messages,
+        messages,
+        temperature: 0.7,
+        max_tokens: 1024,
       },
       {
         headers: {
-          'Authorization': `Bearer ${apiKey}`, // 👈 This is where your key is passed
+          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
       }
     );
 
-    const reply = response.data.choices?.[0]?.message?.content || 'No response from AI';
-    res.json({ message: reply });
-  } catch (error) {
-    console.error('Error contacting Groq:', error);
-    res.status(500).json({ error: 'AI assistant failed to respond' });
+    const reply = response.data?.choices?.[0]?.message?.content;
+
+    res.json({ message: reply || 'No response from AI model' });
+  } catch (error: any) {
+    console.error('Groq API Error:', error?.response?.data || error.message);
+
+    res.status(error?.response?.status || 500).json({
+      error:
+        error?.response?.data?.error?.message ||
+        'LLM server error — try again shortly.',
+    });
   }
 };
