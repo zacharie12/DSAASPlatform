@@ -15,7 +15,7 @@ export const sendChatMessage = async (messages: ChatMessage[]): Promise<ChatResp
   try {
     console.log('Sending chat request:', messages);
     
-    const response = await axios.post('/api/chat', {
+    const response = await axios.post('https://dsaasplatform-backend.onrender.com/api/chat', {
       messages
     });
 
