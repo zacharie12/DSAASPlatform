@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 10000;
 // CORS configuration for production
 console.log('Allowing CORS from:', process.env.CLIENT_URL);
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: 'https://dsaasplatform-1.onrender.com',
   credentials: true
 }));
 
