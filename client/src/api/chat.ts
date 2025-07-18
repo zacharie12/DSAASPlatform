@@ -15,7 +15,11 @@ export const sendChatMessage = async (messages: ChatMessage[]): Promise<ChatResp
   try {
     console.log('Sending chat request:', messages);
     
-    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
+    // Default to the current site origin if VITE_API_URL is not set. This
+    // allows the frontend and backend to work together when deployed under
+    // the same domain without additional configuration.
+    const apiUrl =
+      import.meta.env.VITE_API_URL || window.location.origin;
     const response = await axios.post(`${apiUrl}/api/chat`, {
       messages
     });

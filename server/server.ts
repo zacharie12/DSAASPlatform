@@ -8,11 +8,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// CORS configuration for production
-console.log('Allowing CORS from:', process.env.CLIENT_URL);
+// CORS configuration
+// Allow requests from the configured client URL when running in production.
+// Fallback to localhost for local development.
+const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:3000';
+console.log('Allowing CORS from:', allowedOrigin);
 app.use(cors({
-  origin: 'https://dsaasplatform-1.onrender.com',
-  credentials: true
+  origin: allowedOrigin,
+  credentials: true,
 }));
 
 app.use(express.json());

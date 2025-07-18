@@ -38,5 +38,6 @@ The Vite dev server will start on <http://localhost:3000>.
 ## Environment Variables
 
 - `GROQ_API_KEY` – API key for the Groq model (backend)
-- `VITE_API_URL` – URL of the backend API (frontend). Defaults to `http://localhost:10000` if not set.
+- `VITE_API_URL` – URL of the backend API (frontend). If not set, the
+  frontend sends requests to the same origin that served the web app.
 
