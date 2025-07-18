@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import LoginPage from "../client/components/LoginPage";
-import Navigation from "../client/components/Navigation";
-import ClientDashboard from "../client/components/ClientDashboard";
-import ModelsPage from "../client/components/ModelsPage";
-import ModelDetailPage from "../client/components/ModelDetailPage";
-import ChatbotPage from "../client/components/ChatbotPage";
-import ResultsDashboard from "../client/components/ResultsDashboard";
+import LoginPage from "./components/LoginPage";
+import Navigation from "./components/Navigation";
+import ClientDashboard from "./components/ClientDashboard";
+import ModelsPage from "./components/ModelsPage";
+import ModelDetailPage from "./components/ModelDetailPage";
+import ChatbotPage from "./components/ChatbotPage";
+import ResultsDashboard from "./components/ResultsDashboard";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
